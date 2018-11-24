@@ -320,7 +320,7 @@ class KorgWirelessSyncStart:NSObject{
     func sendStartCommand(_ hostTime: UInt64, withTempo tempo: Float) {
         if isConnected && isMaster {
             let slaveNanoSec: UInt64 = beaconReceived ? (hostTime2NanoSec(estimatedRemoteHostTime(hostTime)) + UInt64(timeDiff)) : 0
-            let commands:[Any] = [1, slaveNanoSec, tempo] // start
+            let commands:[Any] = [startSlaveCommand, slaveNanoSec, tempo]
             let data = NSKeyedArchiver.archivedData(withRootObject: commands)
             self.send(data, with: MCSessionSendDataMode.reliable)
         }
@@ -330,7 +330,7 @@ class KorgWirelessSyncStart:NSObject{
     func sendStopCommand(_ hostTime: UInt64) {
         if isConnected && isMaster {
             let slaveNanoSec: UInt64 = beaconReceived ? (hostTime2NanoSec(estimatedRemoteHostTime(hostTime)) + UInt64(timeDiff)) : 0
-            let commands:[Any] = [2, slaveNanoSec] // stop
+            let commands:[Any] = [stopSlaveCommand, slaveNanoSec] 
             let data = NSKeyedArchiver.archivedData(withRootObject: commands)
             self.send(data, with: MCSessionSendDataMode.reliable)
         }
