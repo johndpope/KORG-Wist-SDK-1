@@ -37,8 +37,6 @@
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		28AD733E0D9D9553002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ../main.m; sourceTree = "<group>"; };
-		2A83465A135EA26700EB7C26 /* KorgWirelessSyncStart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KorgWirelessSyncStart.h; path = ../WIST/KorgWirelessSyncStart.h; sourceTree = SOURCE_ROOT; };
-		2A83465B135EA26700EB7C26 /* KorgWirelessSyncStart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KorgWirelessSyncStart.m; path = ../WIST/KorgWirelessSyncStart.m; sourceTree = SOURCE_ROOT; };
 		2A834660135EA27A00EB7C26 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		2A83466B135EA2D600EB7C26 /* WISTSampleViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = WISTSampleViewController.xib; path = Resources/WISTSampleViewController.xib; sourceTree = SOURCE_ROOT; };
 		2A834678135EA31B00EB7C26 /* CriticalSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CriticalSection.h; path = Classes/CriticalSection.h; sourceTree = SOURCE_ROOT; };
@@ -166,8 +164,6 @@
 			isa = PBXGroup;
 			children = (
 				8413A38521A9D4E700A6F44C /* KorgSyncStart.swift */,
-				2A83465A135EA26700EB7C26 /* KorgWirelessSyncStart.h */,
-				2A83465B135EA26700EB7C26 /* KorgWirelessSyncStart.m */,
 				2AE22F5A13B14C560041E927 /* AboutWISTViewController.h */,
 				2AE22F5B13B14C560041E927 /* AboutWISTViewController.m */,
 				8413A38421A9D4E600A6F44C /* WISTSample-Bridging-Header.h */,

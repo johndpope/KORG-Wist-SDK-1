@@ -38,19 +38,17 @@ func nanoSec2HostTime(_ nanosec: UInt64) -> UInt64 {
 }
 
 
-enum GKCommand : Int {
-    case beacon = 0 //  master -> slave -> master
-    case startSlave = 1
-    case stopSlave = 2
-    case requestLatency = 3
-    case latency = 4
-    case peersLatencyChanged = 5
-    case requestDelay = 6
-    case delay = 7
-}
+let beaconCommand:Int = 0 //  master -> slave -> master
+let startSlaveCommand:Int = 1
+let stopSlaveCommand:Int = 2
+let requestLatencyCommand:Int = 3
+let latencyCommand:Int = 4
+let peersLatencyChangedCommand:Int = 5
+let requestDelayCommand:Int = 6
+let delayCommand:Int = 7
 
 @objcMembers
-public class KorgWirelessSyncStart:NSObject,MCBrowserViewControllerDelegate,MCSessionDelegate,MCAdvertiserAssistantDelegate {
+class KorgWirelessSyncStart:NSObject,MCBrowserViewControllerDelegate,MCSessionDelegate,MCAdvertiserAssistantDelegate {
     private var mutableBlockedPeers: [AnyHashable] = []
 
 
@@ -84,8 +82,9 @@ public class KorgWirelessSyncStart:NSObject,MCBrowserViewControllerDelegate,MCSe
                 _latency = newValue
                 
                 if isConnected {
-                    let commands:[GKCommand] = [.peersLatencyChanged]
-                    send(NSKeyedArchiver.archivedData(withRootObject: commands), with: MCSessionSendDataMode.reliable)
+                    let commands = [peersLatencyChangedCommand]
+                    let data = NSKeyedArchiver.archivedData(withRootObject: commands)
+                    send(data, with: MCSessionSendDataMode.reliable)
                 }
             }
         }
@@ -222,19 +221,19 @@ public class KorgWirelessSyncStart:NSObject,MCBrowserViewControllerDelegate,MCSe
         }
         guard let array = _array else {return}
         
-        if let command0 = array[0] as? GKCommand{
-            let command:GKCommand = command0
+        if let command = array[0] as? Int{
+       
             switch command {
-            case .requestLatency:
-                let commands = [latency, latency]
+            case requestLatencyCommand:
+                let commands = [latencyCommand, requestLatencyCommand]
                 send(NSKeyedArchiver.archivedData(withRootObject: commands), with: MCSessionSendDataMode.reliable)
-            case .latency:
+            case latencyCommand:
                 if let latencyNano = array[1] as? UInt64{
                     peerlatency = latencyNano
                     gotPeerlatency = true
                 }
                 
-            case .peersLatencyChanged:
+            case peersLatencyChangedCommand:
                 peerlatency = 0
                 gotPeerlatency = false
             default:
@@ -253,16 +252,16 @@ public class KorgWirelessSyncStart:NSObject,MCBrowserViewControllerDelegate,MCSe
                 array = NSKeyedUnarchiver.unarchiveObject(with: aData) as? [Any]
             }
             
-            if let command:GKCommand = array?[0] as? GKCommand{
+            if let command = array?[0] as? Int{
                 switch command {
-                case .delay:
+                case delayCommand:
                     if !gotPeerdelay {
                         if let delay = array?[1] as? UInt64{
                             peerdelay = delay
                             gotPeerdelay = true
                         }
                     }
-                case .beacon:
+                case beaconCommand:
                     if let sentNano = array?[1] as? UInt64{
                         
                         if let remoteSentNano = array?[2] as? UInt64{
@@ -287,7 +286,7 @@ public class KorgWirelessSyncStart:NSObject,MCBrowserViewControllerDelegate,MCSe
                         print("FAIL!!! array?1 aint uint64")
                     }
                    
-                case .requestLatency, .latency, .peersLatencyChanged:
+                case requestLatencyCommand, latencyCommand, peersLatencyChangedCommand:
                     processLatencyCommand(data)
                 default:
                     break
@@ -305,29 +304,29 @@ public class KorgWirelessSyncStart:NSObject,MCBrowserViewControllerDelegate,MCSe
             if let aData = data {
                 dataArray = NSKeyedUnarchiver.unarchiveObject(with: aData) as? [Any]
             }
-            if let command = dataArray?[0] as? GKCommand{
+            if let command = dataArray?[0] as? Int{
                 switch command {
-                case .beacon:
+                case beaconCommand:
                     if let beaconData = dataArray?[1] as? UInt64{
-                        let commands:[Any] = [GKCommand.beacon, beaconData, hostTime2NanoSec(mach_absolute_time())]
+                        let commands:[Any] = [beaconCommand, beaconData, hostTime2NanoSec(mach_absolute_time())]
                         send(NSKeyedArchiver.archivedData(withRootObject: commands), with: MCSessionSendDataMode.unreliable)
                     }
                     
-                case .requestDelay:
-                    let commands = [delay, delay]
+                case requestDelayCommand:
+                    let commands:[Any] = [delayCommand, delay]
                     send(NSKeyedArchiver.archivedData(withRootObject: commands), with: MCSessionSendDataMode.reliable)
-                case .startSlave:
+                case startSlaveCommand:
                     
                     if let nanoSec = dataArray?[1] as? UInt64{
                         if let tempo = dataArray?[2] as? Float{
                              delegate?.wistStartCommandReceived(nanoSec2HostTime(nanoSec), withTempo: tempo)
                         }
                     }
-                case .stopSlave:
+                case stopSlaveCommand:
                     if let nanoSec = dataArray?[1] as? UInt64{
                         delegate?.wistStopCommandReceived(nanoSec2HostTime(nanoSec))
                     }
-                case .requestLatency, .latency, .peersLatencyChanged:
+                case requestLatencyCommand, latencyCommand, peersLatencyChangedCommand:
                     processLatencyCommand(data)
                 default:
                     break
@@ -360,8 +359,9 @@ public class KorgWirelessSyncStart:NSObject,MCBrowserViewControllerDelegate,MCSe
     func sendStartCommand(_ hostTime: UInt64, withTempo tempo: Float) {
         if isConnected && isMaster {
             let slaveNanoSec: UInt64 = beaconReceived ? (hostTime2NanoSec(estimatedRemoteHostTime(hostTime)) + UInt64(timeDiff)) : 0
-            let commands:[Any] = [GKCommand.startSlave, slaveNanoSec, tempo]
-            send(NSKeyedArchiver.archivedData(withRootObject: commands), with: MCSessionSendDataMode.reliable)
+            let commands:[Any] = [1, slaveNanoSec, tempo] // start
+            let data = NSKeyedArchiver.archivedData(withRootObject: commands)
+            send(data, with: MCSessionSendDataMode.reliable)
         }
     }
 
@@ -369,8 +369,9 @@ public class KorgWirelessSyncStart:NSObject,MCBrowserViewControllerDelegate,MCSe
     func sendStopCommand(_ hostTime: UInt64) {
         if isConnected && isMaster {
             let slaveNanoSec: UInt64 = beaconReceived ? (hostTime2NanoSec(estimatedRemoteHostTime(hostTime)) + UInt64(timeDiff)) : 0
-            let commands:[Any] = [GKCommand.stopSlave, slaveNanoSec]
-            send(NSKeyedArchiver.archivedData(withRootObject: commands), with: MCSessionSendDataMode.reliable)
+            let commands:[Any] = [2, slaveNanoSec] // stop
+            let data = NSKeyedArchiver.archivedData(withRootObject: commands)
+            send(data, with: MCSessionSendDataMode.reliable)
         }
     }
 
@@ -378,22 +379,26 @@ public class KorgWirelessSyncStart:NSObject,MCBrowserViewControllerDelegate,MCSe
         //  send beacon
         if isConnected {
             if !gotPeerlatency {
-                let request = [GKCommand.requestLatency]
-                send(NSKeyedArchiver.archivedData(withRootObject: request), with: MCSessionSendDataMode.reliable)
+                let request = NSArray.init(array: [requestLatencyCommand])
+                let data = NSKeyedArchiver.archivedData(withRootObject: request)
+                send(data, with: MCSessionSendDataMode.reliable)
             }
             if isMaster {
                 if !gotPeerdelay {
-                    let request = [GKCommand.requestDelay]
-                    send(NSKeyedArchiver.archivedData(withRootObject: request), with: MCSessionSendDataMode.reliable)
+                    let request =  NSArray.init(array: [requestDelayCommand])
+                    let data = NSKeyedArchiver.archivedData(withRootObject: request)
+                    send(data, with: MCSessionSendDataMode.reliable)
                 }
 
-                let commands:[Any] = [GKCommand.beacon, hostTime2NanoSec(mach_absolute_time())]
-                send(NSKeyedArchiver.archivedData(withRootObject: commands), with: MCSessionSendDataMode.unreliable)
+                let commands =  NSArray.init(array: [beaconCommand, hostTime2NanoSec(mach_absolute_time())])
+                let data = NSKeyedArchiver.archivedData(withRootObject: commands)
+                send(data, with: MCSessionSendDataMode.unreliable)
             }
         }
     }
 
     public func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
+        print("session didReceive!!")
         if isMaster {
             receiveData(inMasterMode: data)
         } else {
@@ -402,6 +407,7 @@ public class KorgWirelessSyncStart:NSObject,MCBrowserViewControllerDelegate,MCSe
     }
 
     public func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
+        print("session!!")
         switch state {
             case .connected:
                 break
@@ -423,6 +429,7 @@ public class KorgWirelessSyncStart:NSObject,MCBrowserViewControllerDelegate,MCSe
     // Received a byte stream from remote peer
 
     public func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
+        print("session!!")
     }
     // Start receiving a resource from remote peer
 
@@ -456,14 +463,14 @@ public class KorgWirelessSyncStart:NSObject,MCBrowserViewControllerDelegate,MCSe
     }
 
     // MARK: - Browser delegate
-    public func browserViewControllerDidFinish(_ browserViewController: MCBrowserViewController) {
+    func browserViewControllerDidFinish(_ browserViewController: MCBrowserViewController) {
         isMaster = true
         isConnected = true
         delegate?.wistConnectionEstablished()
         NotificationCenter.default.post(name: kMCBrowserDismissNotification, object: nil)
     }
 
-    public func browserViewControllerWasCancelled(_ browserViewController: MCBrowserViewController) {
+    func browserViewControllerWasCancelled(_ browserViewController: MCBrowserViewController) {
         isMaster = false
         delegate?.wistConnectionCancelled()
         NotificationCenter.default.post(name: kMCBrowserDismissNotification, object: nil)
