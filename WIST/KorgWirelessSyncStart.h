@@ -33,7 +33,7 @@ extern NSString * const kMCFileReceivedNotification;
 extern NSString * const kMCFileReceivedURL;
 extern NSString * const kMCBrowserDismissNotification;
 
-@interface KorgWirelessSyncStart : NSObject <MCSessionDelegate, MCBrowserViewControllerDelegate, MCAdvertiserAssistantDelegate>
+@interface KorgWirelessSyncStartOld : NSObject <MCSessionDelegate, MCBrowserViewControllerDelegate, MCAdvertiserAssistantDelegate>
 {
 @private
     id<KorgWirelessSyncStartDelegate> delegate;

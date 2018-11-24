@@ -12,6 +12,7 @@
 #import "AudioIO.h"
 #import "Synthesizer.h"
 #import "AboutWISTViewController.h"
+#import "WISTSample-Swift.h"
 
 @interface WISTSampleViewController()
 @property (nonatomic, assign) float tempo;
@@ -30,6 +31,7 @@
 @synthesize statusLabel;
 @synthesize tempo = tempo_;
 
+
 //  ---------------------------------------------------------------------------
 //      initWithNibName:bundle
 //  ---------------------------------------------------------------------------
@@ -43,11 +45,12 @@
         wist_ = [[KorgWirelessSyncStart alloc] init];
         wist_.delegate = self;
 
+
         [wist_ setupPeerAndSessionWithDisplayName:[UIDevice currentDevice].name];
         [wist_ advertiseSelf:YES];
         [wist_ setupMCBrowser];
         
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismissBrowser) name:kMCBrowserDismissNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismissBrowser) name:@"kMCBrowserDismissNotification" object:nil];
 
         const float fs = 44100.0f;
         synth_ = new Synthesizer(fs);
@@ -83,7 +86,7 @@
 //  ---------------------------------------------------------------------------
 - (void)dealloc
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:kMCBrowserDismissNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"kMCBrowserDismissNotification" object:nil];
     
     delete audioIo_;
     audioIo_ = NULL;
