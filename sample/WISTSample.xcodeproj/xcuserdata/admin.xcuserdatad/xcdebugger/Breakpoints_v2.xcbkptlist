@@ -12,86 +12,6 @@
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../WIST/KorgSyncStart.swift"
-            timestampString = "564786000.323006"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "437"
-            endingLineNumber = "437"
-            landmarkName = "session(_:didStartReceivingResourceWithName:fromPeer:with:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../WIST/KorgSyncStart.swift"
-            timestampString = "564786000.323478"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "432"
-            endingLineNumber = "432"
-            landmarkName = "session(_:didReceive:withName:fromPeer:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../WIST/KorgSyncStart.swift"
-            timestampString = "564786000.323842"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "410"
-            endingLineNumber = "410"
-            landmarkName = "session(_:peer:didChange:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../WIST/KorgSyncStart.swift"
-            timestampString = "564786000.324175"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "401"
-            endingLineNumber = "401"
-            landmarkName = "session(_:didReceive:fromPeer:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../WIST/KorgSyncStart.swift"
-            timestampString = "564786000.324484"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "409"
-            endingLineNumber = "409"
-            landmarkName = "session(_:peer:didChange:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
          <BreakpointContent
             shouldBeEnabled = "Yes"
@@ -113,7 +33,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "307"
             endingLineNumber = "307"
-            landmarkName = "receiveData(inSlaveMode:)"
+            landmarkName = "estimatedLocalHostTime(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -161,7 +81,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "267"
             endingLineNumber = "267"
-            landmarkName = "receiveData(inMasterMode:)"
+            landmarkName = "receiveData(inSlaveMode:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -177,7 +97,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "290"
             endingLineNumber = "290"
-            landmarkName = "receiveData(inMasterMode:)"
+            landmarkName = "receiveData(inSlaveMode:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -193,7 +113,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "293"
             endingLineNumber = "293"
-            landmarkName = "receiveData(inMasterMode:)"
+            landmarkName = "receiveData(inSlaveMode:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -209,7 +129,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "292"
             endingLineNumber = "292"
-            landmarkName = "receiveData(inMasterMode:)"
+            landmarkName = "receiveData(inSlaveMode:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

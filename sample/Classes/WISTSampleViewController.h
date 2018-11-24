@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "KorgWirelessSyncStart.h"
-
+#import "WISTSample-Swift.h"
+#import <MultipeerConnectivity/MultipeerConnectivity.h>
 @class KorgWirelessSyncStart;
 
 @interface WISTSampleViewController : UIViewController <KorgWirelessSyncStartDelegate>

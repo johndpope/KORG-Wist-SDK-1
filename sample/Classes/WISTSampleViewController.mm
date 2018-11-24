@@ -8,11 +8,11 @@
 
 #import <mach/mach_time.h>
 #import "WISTSampleViewController.h"
-#import "KorgWirelessSyncStart.h"
+//#import "KorgWirelessSyncStart.h"
 #import "AudioIO.h"
 #import "Synthesizer.h"
 #import "AboutWISTViewController.h"
-#import "WISTSample-Swift.h"
+//#import "WISTSample-Swift.h"
 
 @interface WISTSampleViewController()
 @property (nonatomic, assign) float tempo;

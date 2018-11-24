@@ -44,42 +44,6 @@
     [viewController disconnectWist];
 }
 
-#pragma mark -
-//  ---------------------------------------------------------------------------
-//      applicationWillResignActive
-//  ---------------------------------------------------------------------------
-- (void)applicationWillResignActive:(UIApplication *)application
-{
-}
-
-//  ---------------------------------------------------------------------------
-//      applicationDidBecomeActive
-//  ---------------------------------------------------------------------------
-- (void)applicationDidBecomeActive:(UIApplication *)application
-{
-}
-
-//  ---------------------------------------------------------------------------
-//      applicationDidEnterBackground
-//  ---------------------------------------------------------------------------
-- (void)applicationDidEnterBackground:(UIApplication *)application
-{
-}
-
-//  ---------------------------------------------------------------------------
-//      applicationWillEnterForeground
-//  ---------------------------------------------------------------------------
-- (void)applicationWillEnterForeground:(UIApplication *)application
-{
-}
-
-#pragma mark -
-//  ---------------------------------------------------------------------------
-//      applicationDidReceiveMemoryWarning
-//  ---------------------------------------------------------------------------
-- (void)applicationDidReceiveMemoryWarning:(UIApplication *)application
-{
-}
 
 
 @end

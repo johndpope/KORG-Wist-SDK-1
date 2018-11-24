@@ -28,6 +28,7 @@
 		2AE22F5C13B14C560041E927 /* AboutWISTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AE22F5B13B14C560041E927 /* AboutWISTViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		43D6EA7F18E301080020A713 /* MultipeerConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43D6EA7E18E301080020A713 /* MultipeerConnectivity.framework */; };
 		8413A38621A9D4E700A6F44C /* KorgSyncStart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8413A38521A9D4E700A6F44C /* KorgSyncStart.swift */; };
+		843B865221A9F446007EFA2F /* KorgSyncStart+MCPeer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843B865121A9F446007EFA2F /* KorgSyncStart+MCPeer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,8 +64,9 @@
 		2AE22F5B13B14C560041E927 /* AboutWISTViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AboutWISTViewController.m; path = ../WIST/AboutWISTViewController.m; sourceTree = SOURCE_ROOT; };
 		32CA4F630368D1EE00C91783 /* WISTSample_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WISTSample_Prefix.pch; sourceTree = "<group>"; };
 		43D6EA7E18E301080020A713 /* MultipeerConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultipeerConnectivity.framework; path = System/Library/Frameworks/MultipeerConnectivity.framework; sourceTree = SDKROOT; };
-		8413A38421A9D4E600A6F44C /* WISTSample-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WISTSample-Bridging-Header.h"; sourceTree = "<group>"; };
 		8413A38521A9D4E700A6F44C /* KorgSyncStart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KorgSyncStart.swift; sourceTree = "<group>"; };
+		843B865121A9F446007EFA2F /* KorgSyncStart+MCPeer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KorgSyncStart+MCPeer.swift"; sourceTree = "<group>"; };
+		843B865321A9F821007EFA2F /* Swift-FixedHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Swift-FixedHeader.h"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* WISTSample-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "WISTSample-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -102,6 +104,7 @@
 				2A83467A135EA31B00EB7C26 /* DrumOscillator.mm */,
 				2A834678135EA31B00EB7C26 /* CriticalSection.h */,
 				2A83467D135EA31B00EB7C26 /* ScopedLock.h */,
+				843B865321A9F821007EFA2F /* Swift-FixedHeader.h */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -164,9 +167,9 @@
 			isa = PBXGroup;
 			children = (
 				8413A38521A9D4E700A6F44C /* KorgSyncStart.swift */,
+				843B865121A9F446007EFA2F /* KorgSyncStart+MCPeer.swift */,
 				2AE22F5A13B14C560041E927 /* AboutWISTViewController.h */,
 				2AE22F5B13B14C560041E927 /* AboutWISTViewController.m */,
-				8413A38421A9D4E600A6F44C /* WISTSample-Bridging-Header.h */,
 			);
 			name = "WIST SDK";
 			path = ../WIST;
@@ -267,6 +270,7 @@
 				2A83468A135EA31B00EB7C26 /* WISTSampleAppDelegate.mm in Sources */,
 				2A83468B135EA31B00EB7C26 /* WISTSampleViewController.mm in Sources */,
 				8413A38621A9D4E700A6F44C /* KorgSyncStart.swift in Sources */,
+				843B865221A9F446007EFA2F /* KorgSyncStart+MCPeer.swift in Sources */,
 				2AE22F5C13B14C560041E927 /* AboutWISTViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -290,10 +294,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = WISTSample_Prefix.pch;
 				INFOPLIST_FILE = "WISTSample-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = WISTSample;
-				SWIFT_OBJC_BRIDGING_HEADER = "../WIST/WISTSample-Bridging-Header.h";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Classes/Swift-FixedHeader.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 			};
@@ -313,10 +318,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = WISTSample_Prefix.pch;
 				INFOPLIST_FILE = "WISTSample-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = WISTSample;
-				SWIFT_OBJC_BRIDGING_HEADER = "../WIST/WISTSample-Bridging-Header.h";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Classes/Swift-FixedHeader.h";
 				SWIFT_VERSION = 4.2;
 				VALIDATE_PRODUCT = NO;
 			};
