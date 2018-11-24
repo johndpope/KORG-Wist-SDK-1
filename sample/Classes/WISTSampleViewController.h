@@ -7,9 +7,25 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "KorgWirelessSyncStart.h"
+#import <MultipeerConnectivity/MultipeerConnectivity.h>
+
 
 @class KorgWirelessSyncStart;
+
+@protocol KorgWirelessSyncStartDelegate <NSObject>
+
+@required
+//  Indicates a command was received from master
+- (void)wistStartCommandReceived:(uint64_t)hostTime withTempo:(float)tempo;
+- (void)wistStopCommandReceived:(uint64_t)hostTime;
+
+@optional
+//  Indicates a state change
+- (void)wistConnectionCancelled;
+- (void)wistConnectionEstablished;
+- (void)wistConnectionLost;
+
+@end
 
 @interface WISTSampleViewController : UIViewController <KorgWirelessSyncStartDelegate>
 {

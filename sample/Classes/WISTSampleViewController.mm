@@ -8,7 +8,6 @@
 
 #import <mach/mach_time.h>
 #import "WISTSampleViewController.h"
-#import "KorgWirelessSyncStart.h"
 #import "AudioIO.h"
 #import "Synthesizer.h"
 #import "AboutWISTViewController.h"
