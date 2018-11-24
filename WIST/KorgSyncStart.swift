@@ -158,7 +158,7 @@ public class KorgWirelessSyncStart:NSObject,MCBrowserViewControllerDelegate,MCSe
         peerID = MCPeerID(displayName: displayName ?? "")
         mutableBlockedPeers.append(peerID)
 
-        session = MCSession(peer: peerID!)
+        session = MCSession(peer:peerID!, securityIdentity: nil, encryptionPreference: MCEncryptionPreference.none)
         session?.delegate = self
     }
 
